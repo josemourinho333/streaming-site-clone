@@ -10,7 +10,7 @@ const Poster = (props) => {
     while (index < 3) {
       return (
       <span key={item?.id}>
-        {item?.name === 'Science Fiction' ? 'Sci-Fi' : item?.name}
+        {item?.name === 'Science Fiction' ? 'Sci-Fi' : item?.name} 
       </span>
       )
     }
@@ -24,7 +24,7 @@ const Poster = (props) => {
             <span className='text-xs font-semibold text-white px-0.5 py-0.25'>{releaseYear}</span> 
             {/* <span>Avg score: {props.score}</span> */}
           </p>
-          <h3 className="media-name text-md font-bold tracking-wide">{props.title ? props.title : props.name}</h3>
+          <h3 className="media-name text-lg font-bold tracking-wide">{props.title ? props.title : props.name}</h3>
           <p className="media-body flex mt-2 mb-2">
             <HeartIcon className='h-6 w-6 mr-1 fill-white-500 hover:fill-red-500'/>
             <PlusIcon  className='h-6 w-6 mr-1 fill-white-500 hover:fill-green-500'/>

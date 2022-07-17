@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import ListContainer from './components/ListContainer';
 import HeroContainer from './components/HeroContainer';
+import NavContainer from './components/NavContainer';
 
 // Hooks
 // import useRequests from './hooks/useRequests';
@@ -20,7 +21,8 @@ const endpoints = {
   discoverMovies: '/discover/movie',
   discoverShows: '/discover/tv',
   upcomingMovies: '/movie/upcoming',
-  genreList: '/genre/movie/list',
+  movieGenres: '/genre/movie/list',
+  showGenres: '/genre/tv/list',
 };
 
 function App() {
@@ -49,7 +51,8 @@ function App() {
   const discoverMoviesURL = `${URL}${endpoints.discoverMovies}`;
   const discoverShowsURL = `${URL}${endpoints.discoverShows}`;
   const upcomingMoviesURL = `${URL}${endpoints.upcomingMovies}`;
-  const allGenresListURL = `${URL}${endpoints.genreList}`;
+  const movieGenresURL = `${URL}${endpoints.movieGenres}`;
+  const showGenresURL = `${URL}${endpoints.showGenres}`;
 
   const apiKey = {
     params: {
@@ -68,7 +71,8 @@ function App() {
       axios.get(discoverMoviesURL, apiKey),
       axios.get(discoverShowsURL, apiKey),
       axios.get(upcomingMoviesURL, apiKey),
-      axios.get(allGenresListURL, apiKey)
+      axios.get(movieGenresURL, apiKey),
+      axios.get(showGenresURL, apiKey)
   ])
   .then((all) => {
     setState(prev => ({
@@ -82,7 +86,7 @@ function App() {
       discoverMovies: all[6].data.results,
       discoverShows: all[7].data.results,
       upcomingMovies: all[8].data.results,
-      allGenres: all[9].data.genres,
+      allGenres: [...all[9].data.genres, ...all[10].data.genres],
     }))
   })
   .then(() => {
@@ -95,6 +99,7 @@ function App() {
 
   return (
     <div className="App">
+      <NavContainer />
       <HeroContainer movie={state.hero}/>
       <ListContainer title="Trending Movies" media={state.trendingMovies} allGenres={state.allGenres}/>
       <ListContainer title="Trending Shows" media={state.trendingShows} allGenres={state.allGenres}/>
