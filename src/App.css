@@ -24,3 +24,12 @@
 }
 
 /* Poster.jsx styling */
+.media-genres > span {
+  font-size: 0.70rem;
+  font-weight: 600;
+  border-radius: 5px;
+  padding: 2px 3px;
+  color: black;
+  background-color: white;
+  margin-right: 5px; 
+}

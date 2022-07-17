@@ -12,6 +12,7 @@ const List = (props) => {
         id={poster.id}
         genres={poster.genre_ids}
         releaseDate={poster.release_date}
+        airDate={poster.first_air_date}
         score={poster.vote_average}
         allGenres={props.allGenres}
       />
