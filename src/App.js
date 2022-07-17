@@ -20,6 +20,7 @@ const endpoints = {
   discoverMovies: '/discover/movie',
   discoverShows: '/discover/tv',
   upcomingMovies: '/movie/upcoming',
+  genreList: '/genre/movie/list',
 };
 
 function App() {
@@ -34,9 +35,11 @@ function App() {
     discoverMovies: [],
     discoverShows: [],
     upcomingMovies: [],
-    hero: []
+    hero: [],
+    allGenres: []
   });
 
+  // api endpoints
   const trendingMoviesURL = `${URL}${endpoints.trendingMovies}`;
   const trendingShowsURL = `${URL}${endpoints.trendingShows}`;
   const popularMoviesURL = `${URL}${endpoints.popularMovies}`;
@@ -46,6 +49,7 @@ function App() {
   const discoverMoviesURL = `${URL}${endpoints.discoverMovies}`;
   const discoverShowsURL = `${URL}${endpoints.discoverShows}`;
   const upcomingMoviesURL = `${URL}${endpoints.upcomingMovies}`;
+  const allGenresListURL = `${URL}${endpoints.genreList}`;
 
   const apiKey = {
     params: {
@@ -63,7 +67,8 @@ function App() {
       axios.get(topRatedShowsURL, apiKey),
       axios.get(discoverMoviesURL, apiKey),
       axios.get(discoverShowsURL, apiKey),
-      axios.get(upcomingMoviesURL, apiKey)
+      axios.get(upcomingMoviesURL, apiKey),
+      axios.get(allGenresListURL, apiKey)
   ])
   .then((all) => {
     setState(prev => ({
@@ -76,7 +81,8 @@ function App() {
       topRatedShows: all[5].data.results,
       discoverMovies: all[6].data.results,
       discoverShows: all[7].data.results,
-      upcomingMovies: all[8].data.results
+      upcomingMovies: all[8].data.results,
+      allGenres: all[9].data.genres,
     }))
   })
   .then(() => {
@@ -87,78 +93,18 @@ function App() {
   });
   }, [])
 
-  // initalizing states for each category
-  // const [trendingMovies, setTrendingMovies] = useState([]);
-  // const [trendingShows, setTrendingShows] = useState([]);
-  // const [popularMovies, setPopularMovies] = useState([]);
-  // const [popularShows, setPopularShows] = useState([]);
-  // const [topRatedMovies, setTopRatedMovies] = useState([]);
-  // const [topRatedShows, setTopRatedShows] = useState([]);
-  // const [discoverMovies, setDiscoverMovies] = useState([]);
-  // const [discoverShows, setDiscoverShows] = useState([]);
-  // const [upcomingMovies, setUpcomingMovies] = useState([]); 
-
-
-
-  // const trendingMoviesData = useRequests(trendingMoviesURL, API_KEY)
-  // const trendingShowsData = useRequests(trendingShowsURL, API_KEY)
-  // const popularMoviesData = useRequests(popularMoviesURL, API_KEY)
-  // const popularShowsData = useRequests(popularShowsURL, API_KEY)
-  // const topRatedMoviesData = useRequests(topRatedMoviesURL, API_KEY)
-  // const topRatedShowsData = useRequests(topRatedShowsURL, API_KEY)
-  // const discoverMoviesData = useRequests(discoverMoviesURL, API_KEY)
-  // const discoverShowsData = useRequests(discoverShowsURL, API_KEY)
-  // const upcomingMoviesData = useRequests(upcomingMoviesURL, API_KEY)
-
-  // setTrendingMovies(trendingMoviesData);
-  // setTrendingShows(trendingShowsData);
-  // setPopularMovies(popularMoviesData);
-  // setPopularShows(popularShowsData);
-  // setTopRatedMovies(topRatedMoviesData);
-  // setTopRatedShows(topRatedShowsData);
-  // setDiscoverMovies(discoverMoviesData);
-  // setDiscoverShows(discoverShowsData);
-  // setUpcomingMovies(upcomingMoviesData);
-
-  // Promise.all([
-  //   useRequests(trendingMoviesURL, API_KEY),
-  //   useRequests(trendingShowsURL, API_KEY),
-  //   useRequests(popularMoviesURL, API_KEY),
-  //   useRequests(popularShowsURL, API_KEY),
-  //   useRequests(topRatedMoviesURL, API_KEY),
-  //   useRequests(topRatedShowsURL, API_KEY),
-  //   useRequests(discoverMoviesURL, API_KEY),
-  //   useRequests(discoverShowsURL, API_KEY),
-  //   useRequests(upcomingMoviesURL, API_KEY)
-  // ])
-  // .then((all) => {
-  //   setTrendingMovies(all[0].data);
-  //   setTrendingShows(all[1].data);
-  //   setPopularMovies(all[2].data);
-  //   setPopularShows(all[3].data);
-  //   setTopRatedMovies(all[4].data);
-  //   setTopRatedShows(all[5].data);
-  //   setDiscoverMovies(all[6].data);
-  //   setDiscoverShows(all[7].data);
-  //   setUpcomingMovies(all[8].data);
-  // })
-  // .catch((error) => {
-  //   console.log('***ERROR', error.message);
-  // })
-
-
   return (
     <div className="App">
       <HeroContainer movie={state.hero}/>
-      <ListContainer title="Trending Movies" media={state.trendingMovies} />
-      <ListContainer title="Trending Shows" media={state.trendingShows} />
-      <ListContainer title="Popular Movies" media={state.popularMovies} />
-      <ListContainer title="Popular Shows" media={state.popularShows} />
-      <ListContainer title="Top Rated Movies" media={state.topRatedMovies} />
-      <ListContainer title="Top Rated Shows" media={state.topRatedShows} />
-      <ListContainer title="Discover Movies" media={state.discoverMovies} />
-      <ListContainer title="Discover Shows" media={state.discoverShows} />
-      <ListContainer title="Upcoming Movies" media={state.upcomingMovies} />
+      <ListContainer title="Trending Movies" media={state.trendingMovies} allGenres={state.allGenres}/>
+      <ListContainer title="Trending Shows" media={state.trendingShows} allGenres={state.allGenres}/>
+      <ListContainer title="Popular Movies" media={state.popularMovies} allGenres={state.allGenres}/>
+      <ListContainer title="Popular Shows" media={state.popularShows} allGenres={state.allGenres}/>
+      <ListContainer title="Top Rated Movies" media={state.topRatedMovies} allGenres={state.allGenres}/>
+      <ListContainer title="Top Rated Shows" media={state.topRatedShows} allGenres={state.allGenres}/>
+      <ListContainer title="Discover Movies" media={state.discoverMovies} allGenres={state.allGenres}/>
+      <ListContainer title="Discover Shows" media={state.discoverShows} allGenres={state.allGenres}/>
+      <ListContainer title="Upcoming Movies" media={state.upcomingMovies} allGenres={state.allGenres}/>
     </div>
   );
 }
