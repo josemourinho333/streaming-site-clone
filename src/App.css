@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+
+/* List.jsx styling */
+.list::-webkit-scrollbar {
+  display: none;
+}
+
+/* HeroContainer.jsx styling */
+.hero-container {
+  height: 80vh;
+  background-size: cover !important;
+}
+
+.hero-title {
+  margin-top: 40vh;
+}
+
+.hero-desc {
+  width: 45rem;
+  max-width: 80vw;
+  line-height: 1.3;
+}
