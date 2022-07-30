@@ -41,6 +41,9 @@ function App() {
     allGenres: []
   });
 
+  const [favourite, setFavourite] = useState([]);
+  const [watchList, setWatchList] = useState([]);
+
   // api endpoints
   const trendingMoviesURL = `${URL}${endpoints.trendingMovies}`;
   const trendingShowsURL = `${URL}${endpoints.trendingShows}`;
@@ -60,6 +63,7 @@ function App() {
     },
   }
 
+  // axios api call and populating relative states from the result
   useEffect(() => {
     Promise.all([
       axios.get(trendingMoviesURL, apiKey),
@@ -97,19 +101,38 @@ function App() {
   });
   }, [])
 
+  // add to fav, watchList functions, takes in the state in poster.jsx then adds or removes depending on state
+  const favMovie = (fav) => {
+    if (fav.faved) {
+      setFavourite([...favourite, fav]);
+    } else {
+      const favRemoved = favourite.filter(favMovie => favMovie.id !== fav.id);
+      setFavourite(favRemoved);
+    }
+  }
+
+  const watchListMovie = (myList) => {
+    if (myList.myListed) {
+      setWatchList([...watchList, myList]);
+    } else {
+      const watchItemRemoved = watchList.filter(watchItem => watchItem.id !== myList.id);
+      setWatchList(watchItemRemoved);
+    }
+  }
+
   return (
     <div className="App">
       <NavContainer />
       <HeroContainer movie={state.hero}/>
-      <ListContainer title="Trending Movies" media={state.trendingMovies} allGenres={state.allGenres}/>
-      <ListContainer title="Trending Shows" media={state.trendingShows} allGenres={state.allGenres}/>
-      <ListContainer title="Popular Movies" media={state.popularMovies} allGenres={state.allGenres}/>
-      <ListContainer title="Popular Shows" media={state.popularShows} allGenres={state.allGenres}/>
-      <ListContainer title="Top Rated Movies" media={state.topRatedMovies} allGenres={state.allGenres}/>
-      <ListContainer title="Top Rated Shows" media={state.topRatedShows} allGenres={state.allGenres}/>
-      <ListContainer title="Discover Movies" media={state.discoverMovies} allGenres={state.allGenres}/>
-      <ListContainer title="Discover Shows" media={state.discoverShows} allGenres={state.allGenres}/>
-      <ListContainer title="Upcoming Movies" media={state.upcomingMovies} allGenres={state.allGenres}/>
+      <ListContainer title="Trending Movies" media={state.trendingMovies} allGenres={state.allGenres} favMovie={favMovie} watchListMovie={watchListMovie} favourite={favourite} watchList={watchList} />
+      <ListContainer title="Trending Shows" media={state.trendingShows} allGenres={state.allGenres} favMovie={favMovie} watchListMovie={watchListMovie} favourite={favourite} watchList={watchList} />
+      <ListContainer title="Popular Movies" media={state.popularMovies} allGenres={state.allGenres} favMovie={favMovie} watchListMovie={watchListMovie} favourite={favourite} watchList={watchList} />
+      <ListContainer title="Popular Shows" media={state.popularShows} allGenres={state.allGenres} favMovie={favMovie} watchListMovie={watchListMovie} favourite={favourite} watchList={watchList} />
+      <ListContainer title="Top Rated Movies" media={state.topRatedMovies} allGenres={state.allGenres} favMovie={favMovie} watchListMovie={watchListMovie} favourite={favourite} watchList={watchList} />
+      <ListContainer title="Top Rated Shows" media={state.topRatedShows} allGenres={state.allGenres} favMovie={favMovie} watchListMovie={watchListMovie} favourite={favourite} watchList={watchList} />
+      <ListContainer title="Discover Movies" media={state.discoverMovies} allGenres={state.allGenres} favMovie={favMovie} watchListMovie={watchListMovie} favourite={favourite} watchList={watchList} />
+      <ListContainer title="Discover Shows" media={state.discoverShows} allGenres={state.allGenres} favMovie={favMovie} watchListMovie={watchListMovie} favourite={favourite} watchList={watchList} />
+      <ListContainer title="Upcoming Movies" media={state.upcomingMovies} allGenres={state.allGenres} favMovie={favMovie} watchListMovie={watchListMovie} favourite={favourite} watchList={watchList} />
     </div>
   );
 }
