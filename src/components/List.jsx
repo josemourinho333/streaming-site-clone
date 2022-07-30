@@ -15,6 +15,10 @@ const List = (props) => {
         airDate={poster.first_air_date}
         score={poster.vote_average}
         allGenres={props.allGenres}
+        favMovie={props.favMovie}
+        watchListMovie={props.watchListMovie}
+        favourite={props.favourite.filter(fav => fav.id === poster.id)[0]}
+        watchList={props.watchList.filter(listItem => listItem.id === poster.id)[0]}
       />
     )
   })
