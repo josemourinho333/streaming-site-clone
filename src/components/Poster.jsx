@@ -66,8 +66,8 @@ const Poster = (props) => {
             </a>
           </h3>
           <p className="media-body flex mt-2 mb-2">
-            <HeartIcon onClick={saveFavourite} className={`h-6 w-6 mr-1 fill-${!fav.faved ? 'white' : 'red'}-500 hover:fill-red-500`}/>
-            <PlusIcon onClick={addToWatchList} className={`h-6 w-6 mr-1 fill-${!myList.myListed ? 'white' : 'green'}-500 hover:fill-green-500`}/>
+            <HeartIcon onClick={saveFavourite} className={`h-6 w-6 mr-1 fill-${fav.faved ? 'red' : 'white'}-500 hover:fill-red-500`}/>
+            <PlusIcon onClick={addToWatchList} className={`h-6 w-6 mr-1 fill-${myList.myListed ? 'green' : 'white'}-500 hover:fill-green-500`}/>
             <DotsHorizontalIcon className='h-6 w-6 mr-1 fill-white-500 hover:fill-gray-500'/>
           </p>
           <p className="media-genres">
