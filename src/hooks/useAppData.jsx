@@ -31,7 +31,9 @@ const useAppData = () => {
     discoverShows: [],
     upcomingMovies: [],
     hero: [],
-    allGenres: []
+    allGenres: [],
+    movieGenres: [],
+    tvGenres: []
   });
 
   // Favourites and watch list states
@@ -85,6 +87,8 @@ const useAppData = () => {
       discoverShows: all[7].data.results,
       upcomingMovies: all[8].data.results,
       allGenres: [...all[9].data.genres, ...all[10].data.genres],
+      movieGenres: all[9].data.genres,
+      tvGenres: all[10].data.genres
     }))
   })
   .then(() => {
@@ -114,7 +118,7 @@ const useAppData = () => {
     }
   }
 
-  return { state, favourite, watchList, favMovie, watchListMovie}
+  return { state, favourite, watchList, favMovie, watchListMovie, URL, apiKey}
 }
 
 export default useAppData;

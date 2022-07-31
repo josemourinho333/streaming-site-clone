@@ -9,10 +9,9 @@ import Categories from './components/Categories';
 // Hooks
 import useAppData from './hooks/useAppData';
 
-
 function App() {
 
-  const { state, favourite, watchList, favMovie, watchListMovie } = useAppData();
+  const { state, favourite, watchList, favMovie, watchListMovie, URL, apiKey } = useAppData();
 
   return (
     <div className="App">
@@ -39,7 +38,13 @@ function App() {
         } />
         <Route path='/categories' element={
           <Categories 
-            
+            movieGenres={state.movieGenres}
+            allGenres={state.allGenres}
+            tvGenres={state.tvGenres}
+            favMovie={favMovie}
+            watchListMovie={watchListMovie}
+            favourite={favourite}
+            watchList={watchList}
           />
         } />
         <Route path='/mylist' element={
