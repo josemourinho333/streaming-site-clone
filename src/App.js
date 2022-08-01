@@ -5,6 +5,7 @@ import axios from 'axios';
 import NavContainer from './components/NavContainer';
 import Home from './components/Home';
 import Categories from './components/Categories';
+import MyList from './components/MyList';
 
 // Hooks
 import useAppData from './hooks/useAppData';
@@ -48,7 +49,14 @@ function App() {
           />
         } />
         <Route path='/mylist' element={
-          <div> my list </div>
+          <MyList 
+            title="My Watch List"
+            favMovie={favMovie}
+            watchListMovie={watchListMovie}
+            favourite={favourite}
+            watchList={watchList}
+            allGenres={state.allGenres}
+          />
         } />
         <Route path='/favourites' element={
           <div> favourites </div>
