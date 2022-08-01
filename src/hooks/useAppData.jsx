@@ -38,7 +38,18 @@ const useAppData = () => {
 
   // Favourites and watch list states
   const [favourite, setFavourite] = useState([]);
-  const [watchList, setWatchList] = useState([]);
+  const [watchList, setWatchList] = useState([
+    {id: 725201, myListed: true},
+    {id: 507086, myListed: true},
+    {id: 453395, myListed: true},
+    {id: 92782, myListed: true},
+    {id: 90521, myListed: true},
+    {id: 1234, myListed: true},
+    {id: 56187, myListed: true},
+    {id: 67125, myListed: true},
+    {id: 94513, myListed: true},
+    {id: 416647, myListed: true},
+  ]);
 
   // api endpoints
   const trendingMoviesURL = `${URL}${endpoints.trendingMovies}`;
