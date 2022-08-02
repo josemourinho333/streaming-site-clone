@@ -3,10 +3,10 @@ import ListContainer from "./ListContainer";
 import { useEffect, useState } from 'react';
 import axios from "axios";
 
-const MyList = (props) => {
-  const [myList, setMyList] = useState([]);
+const Favourites = (props) => {
+  const [favourites, setFavourites] = useState([]);
 
-  const movieIds = props.watchList.map(item => item.id);
+  const movieIds = props.favourite.map(item => item.id)
   const setOfIds = new Set(movieIds);
   const uniqueIds = [...setOfIds];
 
@@ -15,7 +15,7 @@ const MyList = (props) => {
       const apiURL = `https://api.themoviedb.org/3/movie/${item}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`;
       axios.get(apiURL)
         .then((results) => {
-          setMyList(prev => ([...prev, results.data]))
+          setFavourites(prev => ([...prev, results.data]))
         })
         .catch((err) => console.log('error:', err))
     })
@@ -24,8 +24,8 @@ const MyList = (props) => {
   return (
     <>
       <ListContainer 
-        title="My List"
-        media={myList}
+        title="Favourites"
+        media={favourites}
         customList={true}
         allGenres={props.allGenres}
         favMovie={props.favMovie}
@@ -37,5 +37,4 @@ const MyList = (props) => {
   )
 }
 
-export default MyList;
-
+export default Favourites

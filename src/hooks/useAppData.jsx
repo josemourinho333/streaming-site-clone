@@ -37,7 +37,18 @@ const useAppData = () => {
   });
 
   // Favourites and watch list states
-  const [favourite, setFavourite] = useState([]);
+  const [favourite, setFavourite] = useState([
+    {id: 725201, faved: true},
+    {id: 507086, faved: true},
+    {id: 453395, faved: true},
+    {id: 92782, faved: true},
+    {id: 90521, faved: true},
+    {id: 1234, faved: true},
+    {id: 56187, faved: true},
+    {id: 67125, faved: true},
+    {id: 94513, faved: true},
+    {id: 416647, faved: true},
+  ]);
   const [watchList, setWatchList] = useState([
     {id: 725201, myListed: true},
     {id: 507086, myListed: true},

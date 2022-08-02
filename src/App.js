@@ -6,13 +6,14 @@ import NavContainer from './components/NavContainer';
 import Home from './components/Home';
 import Categories from './components/Categories';
 import MyList from './components/MyList';
+import Favourites from './components/Favourites';
 
 // Hooks
 import useAppData from './hooks/useAppData';
 
 function App() {
 
-  const { state, favourite, watchList, favMovie, watchListMovie, URL, apiKey } = useAppData();
+  const { state, favourite, watchList, favMovie, watchListMovie } = useAppData();
 
   return (
     <div className="App">
@@ -50,7 +51,6 @@ function App() {
         } />
         <Route path='/mylist' element={
           <MyList 
-            title="My Watch List"
             favMovie={favMovie}
             watchListMovie={watchListMovie}
             favourite={favourite}
@@ -59,7 +59,13 @@ function App() {
           />
         } />
         <Route path='/favourites' element={
-          <div> favourites </div>
+          <Favourites 
+            favMovie={favMovie}
+            watchListMovie={watchListMovie}
+            favourite={favourite}
+            watchList={watchList}
+            allGenres={state.allGenres}
+          />
         } />
       </Routes>
     </div>
