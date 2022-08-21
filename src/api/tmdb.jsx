@@ -11,18 +11,3 @@ const tmdb = axios.create({
 });
 
 export default tmdb;
-
-
-// const endpoints = {
-//   trendingMovies: '/trending/movie/week',
-//   trendingShows: '/trending/tv/week',
-//   popularMovies: '/movie/popular',
-//   popularShows: '/tv/popular',
-//   topRatedMovies: '/movie/top_rated',
-//   topRatedShows: '/tv/top_rated',
-//   discoverMovies: '/discover/movie',
-//   discoverShows: '/discover/tv',
-//   upcomingMovies: '/movie/upcoming',
-//   movieGenres: '/genre/movie/list',
-//   showGenres: '/genre/tv/list',
-// };
