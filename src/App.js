@@ -10,37 +10,32 @@ import Search from './components/Search';
 // Hooks
 import useAppData from './hooks/useAppData';
 
-import tmdb from './api/tmdb';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTrendingMovies } from './movies/trendingMoviesSlice';
+
 
 function App() {
 
-  const { state, favourite, watchList, favMovie, watchListMovie, query, setQuery, getAuthToken } = useAppData();
+  // const { state, favourite, watchList, favMovie, watchListMovie, query, setQuery, getAuthToken } = useAppData();
 
+  // const trendinggMovies = useSelector(state => state.trendingMovies);
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(fetchTrendingMovies());
+  // }, [])
+
+  // console.log('useselector trendinggMovies', trendinggMovies);
 
   return (
     <div className="App">
-      <NavContainer getAuthToken={getAuthToken} />
+      <NavContainer />
       <Routes>
         <Route path="/" element={
-          <Home 
-            hero={state.hero} 
-            trendingMovies={state.trendingMovies} 
-            trendingShows={state.trendingShows}
-            popularMovies={state.popularMovies}
-            popularShows={state.popularShows}
-            topRatedMovies={state.topRatedMovies}
-            topRatedShows={state.topRatedShows}
-            discoverMovies={state.discoverMovies}
-            discoverShows={state.discoverShows}
-            upcomingMovies={state.upcomingMovies}
-            allGenres={state.allGenres}
-            favMovie={favMovie}
-            watchListMovie={watchListMovie}
-            favourite={favourite}
-            watchList={watchList}
-          />
+          <Home />
         } />
-        <Route path='/categories' element={
+        {/* <Route path='/categories' element={
           <Categories 
             movieGenres={state.movieGenres}
             allGenres={state.allGenres}
@@ -74,7 +69,7 @@ function App() {
             query={query}
             setQuery={setQuery}
           />
-        } />
+        } /> */}
       </Routes>
     </div>
   );
