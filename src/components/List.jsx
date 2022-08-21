@@ -24,7 +24,7 @@ const List = (props) => {
   })
 
   return (
-    <div className="list flex overflow-x-auto px-8 py-3">
+    <div className="list flex overflow-x-auto pt-3">
       {posters}
     </div>
   );

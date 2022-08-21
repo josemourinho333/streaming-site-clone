@@ -1,4 +1,3 @@
-import Poster from "./Poster";
 import ListContainer from "./ListContainer";
 import { useEffect, useState } from 'react';
 import axios from "axios";

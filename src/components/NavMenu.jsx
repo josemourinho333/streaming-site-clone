@@ -8,6 +8,7 @@ const NavMenu = () => {
       <div className="categories text-sm font-light ml-3"><Link to='/categories'>Categories</Link></div>
       <div className="my-list text-sm font-light ml-3"><Link to='/mylist'>My List</Link></div>
       <div className="fav text-sm font-light ml-3"><Link to='/favourites'>Favourites</Link></div>
+      <div className="search text-sm font-light ml-3"><Link to='/search'>Search</Link></div>
     </div>
   )
 }
