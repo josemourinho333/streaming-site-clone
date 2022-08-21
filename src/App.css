@@ -6,7 +6,15 @@
 
 /* List.jsx styling */
 .list::-webkit-scrollbar {
-  display: none;
+  background: #111;
+  border: 1px solid rgb(37, 37, 37);
+  border-radius: 2rem;
+  height: 10px;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background: rgb(99, 102, 241);
+  border-radius: 2rem
 }
 
 /* HeroContainer.jsx styling */

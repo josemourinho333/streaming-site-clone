@@ -1,22 +1,7 @@
 import { useState, useEffect } from 'react';
+import tmdb from '../api/tmdb';
 import axios from 'axios';
 
-// KEY DATA
-const URL = 'https://api.themoviedb.org/3';
-
-const endpoints = {
-  trendingMovies: '/trending/movie/week',
-  trendingShows: '/trending/tv/week',
-  popularMovies: '/movie/popular',
-  popularShows: '/tv/popular',
-  topRatedMovies: '/movie/top_rated',
-  topRatedShows: '/tv/top_rated',
-  discoverMovies: '/discover/movie',
-  discoverShows: '/discover/tv',
-  upcomingMovies: '/movie/upcoming',
-  movieGenres: '/genre/movie/list',
-  showGenres: '/genre/tv/list',
-};
 
 const useAppData = () => {
   // state for storing results from api calls
@@ -37,64 +22,24 @@ const useAppData = () => {
   });
 
   // Favourites and watch list states
-  const [favourite, setFavourite] = useState([
-    {id: 725201, faved: true},
-    {id: 507086, faved: true},
-    {id: 453395, faved: true},
-    {id: 92782, faved: true},
-    {id: 90521, faved: true},
-    {id: 1234, faved: true},
-    {id: 56187, faved: true},
-    {id: 67125, faved: true},
-    {id: 94513, faved: true},
-    {id: 416647, faved: true},
-  ]);
-  const [watchList, setWatchList] = useState([
-    {id: 725201, myListed: true},
-    {id: 507086, myListed: true},
-    {id: 453395, myListed: true},
-    {id: 92782, myListed: true},
-    {id: 90521, myListed: true},
-    {id: 1234, myListed: true},
-    {id: 56187, myListed: true},
-    {id: 67125, myListed: true},
-    {id: 94513, myListed: true},
-    {id: 416647, myListed: true},
-  ]);
+  const [favourite, setFavourite] = useState([]);
+  const [watchList, setWatchList] = useState([]);
+  const [query, setQuery] = useState('');
 
-  // api endpoints
-  const trendingMoviesURL = `${URL}${endpoints.trendingMovies}`;
-  const trendingShowsURL = `${URL}${endpoints.trendingShows}`;
-  const popularMoviesURL = `${URL}${endpoints.popularMovies}`;
-  const popularShowsURL = `${URL}${endpoints.popularShows}`;
-  const topRatedMoviesURL = `${URL}${endpoints.topRatedMovies}`;
-  const topRatedShowsURL = `${URL}${endpoints.topRatedShows}`;
-  const discoverMoviesURL = `${URL}${endpoints.discoverMovies}`;
-  const discoverShowsURL = `${URL}${endpoints.discoverShows}`;
-  const upcomingMoviesURL = `${URL}${endpoints.upcomingMovies}`;
-  const movieGenresURL = `${URL}${endpoints.movieGenres}`;
-  const showGenresURL = `${URL}${endpoints.showGenres}`;
-
-  const apiKey = {
-    params: {
-      api_key: process.env.REACT_APP_API_KEY,
-    },
-  }
-
-  // axios api call and populating relative states from the result
+  // fetching main data
   useEffect(() => {
     Promise.all([
-      axios.get(trendingMoviesURL, apiKey),
-      axios.get(trendingShowsURL, apiKey),
-      axios.get(popularMoviesURL, apiKey),
-      axios.get(popularShowsURL, apiKey),
-      axios.get(topRatedMoviesURL, apiKey),
-      axios.get(topRatedShowsURL, apiKey),
-      axios.get(discoverMoviesURL, apiKey),
-      axios.get(discoverShowsURL, apiKey),
-      axios.get(upcomingMoviesURL, apiKey),
-      axios.get(movieGenresURL, apiKey),
-      axios.get(showGenresURL, apiKey)
+      tmdb.get('trending/movie/week'),
+      tmdb.get('trending/tv/week'),
+      tmdb.get('movie/popular'),
+      tmdb.get('tv/popular'),
+      tmdb.get('movie/top_rated'),
+      tmdb.get('tv/top_rated'),
+      tmdb.get('discover/movie'),
+      tmdb.get('discover/tv'),
+      tmdb.get('movie/upcoming'),
+      tmdb.get('genre/movie/list'),
+      tmdb.get('genre/tv/list')
   ])
   .then((all) => {
     setState(prev => ({
@@ -121,7 +66,7 @@ const useAppData = () => {
   });
   }, []);
 
-  // add to fav, watchList functions, takes in the state in poster.jsx then adds or removes depending on state
+  // work in progress
   const favMovie = (fav) => {
     if (fav.faved) {
       setFavourite([...favourite, fav]);
@@ -129,8 +74,9 @@ const useAppData = () => {
       const favRemoved = favourite.filter(favMovie => favMovie.id !== fav.id);
       setFavourite(favRemoved);
     }
-  }
+  };
 
+  // work in progress
   const watchListMovie = (myList) => {
     if (myList.myListed) {
       setWatchList([...watchList, myList]);
@@ -138,9 +84,33 @@ const useAppData = () => {
       const watchItemRemoved = watchList.filter(watchItem => watchItem.id !== myList.id);
       setWatchList(watchItemRemoved);
     }
-  }
+  };
 
-  return { state, favourite, watchList, favMovie, watchListMovie, URL, apiKey}
+  //work in progress
+  const getAuthToken = () => {
+    axios.get(`https://api.themoviedb.org/3/authentication/token/new?api_key=${process.env.REACT_APP_API_KEY}`)
+      .then((result) => {
+        console.log('authtoken log', result);
+        localStorage.setItem('user_auth', JSON.stringify(result.data));
+        return result;
+      })
+      .then((result) => {
+        window.location.replace(`https://www.themoviedb.org/authenticate/${result.data.request_token}?redirect_to=http://localhost:3000/
+        `);
+      })
+      .then(() => {
+        const auth = JSON.parse(localStorage.getItem('user_auth'));
+        axios.post(`https://api.themoviedb.org/3/authentication/session/new?api_key=${process.env.REACT_APP_API_KEY}`, {
+          "request_token": auth.request_token
+        })
+          .then((result) => {
+            console.log('succes..?', result);
+          })
+      })
+      .catch((error) => console.log('error', error));
+  };
+
+  return { state, favourite, watchList, favMovie, watchListMovie, URL, query, setQuery, getAuthToken}
 }
 
 export default useAppData;

@@ -1,23 +1,25 @@
 import './App.css';
-import { useState, useEffect } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
-import axios from 'axios';
+import { Routes, Route } from 'react-router-dom';
 import NavContainer from './components/NavContainer';
 import Home from './components/Home';
 import Categories from './components/Categories';
 import MyList from './components/MyList';
 import Favourites from './components/Favourites';
+import Search from './components/Search';
 
 // Hooks
 import useAppData from './hooks/useAppData';
 
+import tmdb from './api/tmdb';
+
 function App() {
 
-  const { state, favourite, watchList, favMovie, watchListMovie } = useAppData();
+  const { state, favourite, watchList, favMovie, watchListMovie, query, setQuery, getAuthToken } = useAppData();
+
 
   return (
     <div className="App">
-      <NavContainer />
+      <NavContainer getAuthToken={getAuthToken} />
       <Routes>
         <Route path="/" element={
           <Home 
@@ -65,6 +67,12 @@ function App() {
             favourite={favourite}
             watchList={watchList}
             allGenres={state.allGenres}
+          />
+        } />
+        <Route path='/search' element={
+          <Search 
+            query={query}
+            setQuery={setQuery}
           />
         } />
       </Routes>
