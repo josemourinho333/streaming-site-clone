@@ -7,35 +7,14 @@ import MyList from './components/MyList';
 import Favourites from './components/Favourites';
 import Search from './components/Search';
 
-// Hooks
-import useAppData from './hooks/useAppData';
-
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchTrendingMovies } from './movies/trendingMoviesSlice';
-
-
 function App() {
-
-  // const { state, favourite, watchList, favMovie, watchListMovie, query, setQuery, getAuthToken } = useAppData();
-
-  // const trendinggMovies = useSelector(state => state.trendingMovies);
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(fetchTrendingMovies());
-  // }, [])
-
-  // console.log('useselector trendinggMovies', trendinggMovies);
 
   return (
     <div className="App">
       <NavContainer />
       <Routes>
-        <Route path="/" element={
-          <Home />
-        } />
-        {/* <Route path='/categories' element={
+        <Route path="/" element={<Home />} />
+        <Route path='/categories' element={
           <Categories 
             movieGenres={state.movieGenres}
             allGenres={state.allGenres}
@@ -46,7 +25,7 @@ function App() {
             watchList={watchList}
           />
         } />
-        <Route path='/mylist' element={
+        {/* <Route path='/mylist' element={
           <MyList 
             favMovie={favMovie}
             watchListMovie={watchListMovie}
