@@ -5,6 +5,7 @@ import topRatedMoviesReducer from '../movies/topRatedMoviesSlice';
 import upcomingMoviesReducer from '../movies/upcomingMoviesSlice';
 import discoverMoviesReducer from '../movies/discoverMoviesSlice';
 import heroReducer from '../movies/heroSlice';
+import moviesByCatReducer from '../movies/moviesByCatSlice';
 
 import movieGenresReducer from '../genres/movieGenresSlice';
 import allGenresReducer from '../genres/allGenresSlice';
@@ -21,5 +22,7 @@ export default configureStore({
 
     movieGenres: movieGenresReducer,
     allGenres: allGenresReducer,
+
+    moviesByCat: moviesByCatReducer,
   }
 })

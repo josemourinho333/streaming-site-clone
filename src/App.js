@@ -16,13 +16,13 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path='/categories' element={
           <Categories 
-            movieGenres={state.movieGenres}
-            allGenres={state.allGenres}
-            tvGenres={state.tvGenres}
-            favMovie={favMovie}
-            watchListMovie={watchListMovie}
-            favourite={favourite}
-            watchList={watchList}
+            // movieGenres={state.movieGenres}
+            // allGenres={state.allGenres}
+            // tvGenres={state.tvGenres}
+            // favMovie={favMovie}
+            // watchListMovie={watchListMovie}
+            // favourite={favourite}
+            // watchList={watchList}
           />
         } />
         {/* <Route path='/mylist' element={
