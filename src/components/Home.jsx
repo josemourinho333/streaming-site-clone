@@ -9,7 +9,7 @@ import { fetchDiscoverMovies } from '../movies/discoverMoviesSlice';
 import { fetchUpcomingMovies } from '../movies/upcomingMoviesSlice';
 import { fetchAllGenres } from '../genres/allGenresSlice';
 
-const Home = (props) => {
+const Home = () => {
 
   const trendingMovies = useSelector(state => state.trendingMovies.trendingMovies.results);
   const popularMovies = useSelector(state => state.popularMovies.popularMovies.results);

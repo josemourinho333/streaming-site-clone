@@ -23,7 +23,6 @@ export const fetchMoviesByCat = createAsyncThunk('movies/fetchMoviesByCat', () =
           const payload = {
             [genre.name]: response.data.results
           };
-          console.log('payloaddd', payload);
           return payload;
         })
       }))
@@ -61,13 +60,3 @@ const moviesByCatSlice = createSlice({
 });
 
 export default moviesByCatSlice.reducer;
-
-// return tmdb
-//     .get('movie/discover', {
-//       ...tmdb.params,
-//       page: Math.floor(Math.random() * 20) + 1,
-//       with_genres: 
-//     })
-//     .then(() => {
-      
-//     })
