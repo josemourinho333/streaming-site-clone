@@ -49,3 +49,34 @@
   color: white;
   margin-right: 5px; 
 }
+
+.media-backdrop {
+  object-fit: contain;
+  height: 80vh;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr 1fr;
+}
+
+.media-header {
+  grid-area: 2 / 2 / 3 / 5;
+  width: 100%;
+  align-items: flex-end;
+  /* justify-content: center; */
+}
+
+.media-title {
+  justify-self: flex-start;
+}
+
+.media-release, .media-director {
+  justify-self: end;
+}
+
+.media-info {
+  display: grid;
+  grid-template-columns: 200px 1fr 1fr 200px;
+}

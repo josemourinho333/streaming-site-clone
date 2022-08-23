@@ -3,9 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import NavContainer from './components/NavContainer';
 import Home from './components/Home';
 import Categories from './components/Categories';
-import MyList from './components/MyList';
-import Favourites from './components/Favourites';
-import Search from './components/Search';
+import MediaDetail from './components/MediaDetail';
 
 function App() {
 
@@ -15,6 +13,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path='/categories' element={<Categories />}/>
+        <Route path='/:type/:id/:name' element={<MediaDetail />}/>
+
+
         {/* <Route path='/mylist' element={
           <MyList 
             favMovie={favMovie}
@@ -39,6 +40,7 @@ function App() {
             setQuery={setQuery}
           />
         } /> */}
+
       </Routes>
     </div>
   );
