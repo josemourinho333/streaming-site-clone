@@ -116,3 +116,11 @@
   -webkit-appearance: none;
   margin: 0;
 }
+
+.reviews-container {
+  grid-area: 3 / 2 / auto / 5;
+}
+
+.review-avatar > img {
+  object-fit: cover;
+}

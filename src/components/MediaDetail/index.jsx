@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { HeartIcon, PlusIcon} from '@heroicons/react/solid';
 import tmdb from '../../api/tmdb';
 import getDirectorName from '../../helpers/getDirectorName';
 import getOfficialTrailer from '../../helpers/getOfficialTrailer';
-import { HeartIcon, PlusIcon} from '@heroicons/react/solid'
+import Reviews from './Reviews';
 
 const MediaDetail = () => {
   const [mediaInfo, setMediaInfo] = useState(null);
@@ -15,7 +16,7 @@ const MediaDetail = () => {
     if (isLoading) {
       tmdb.get(`${type}/${id}`, {
       params: {
-        append_to_response: 'videos, credits',
+        append_to_response: 'videos',
       }
     })
       .then((response) => {
@@ -30,7 +31,17 @@ const MediaDetail = () => {
               crew: [...response.data.crew],
             }))
           })
-          .then(() => setIsLoading(false))
+          .then(() => {
+            tmdb.get(`${type}/${id}/reviews`)
+            .then((response) => {
+              console.log('random page', response);
+              setMediaInfo(prev => ({
+                ...prev,
+                reviews: [...response.data.results],
+              }))
+            })
+            .then(() => setIsLoading(false));
+          })
       })
       .catch((error) => console.log('error', error));
     }
@@ -54,6 +65,7 @@ const MediaDetail = () => {
           <div className="media-info-director text-lg mx-2 font-light">Directed by <span className='font-semibold'>{director}</span></div>
         </div>
       </div>
+
       <div className="media-info-more mt-5">
 
         <div className="media-info-poster border border-indigo-500">
@@ -63,6 +75,7 @@ const MediaDetail = () => {
         <div className="media-info-detail flex flex-col px-3">
           <div className="media-info-tagline font-semibold text-lg">{mediaInfo.tagline}</div>
           <div className="media-info-overview font-light mt-2">{mediaInfo.overview}</div>
+
           <div className="media-info-cast mt-2">
             <div className="cast-title font-semibold text-indigo-500">Cast</div>
             <div className="cast-list">
@@ -75,16 +88,25 @@ const MediaDetail = () => {
               })}
             </div>
           </div>
-          <div className="media-info-genres mt-2">
-            <div className="genre-title font-semibold text-indigo-500">Genres</div>
-            <div className="genre-list">
-              {mediaInfo.genres.map((genre,index) => {
-                return (
-                  <span key={index} className="max-w-max rounded-md text-sm font-light bg-indigo-500 px-1 mr-1 inline-block">{genre.name}</span>
-                )
-              })}
+            
+          <div className="media-info-misc flex items-center">
+            <div className="media-info-genres mt-2">
+              <div className="genre-title font-semibold text-indigo-500">Genres</div>
+              <div className="genre-list">
+                {mediaInfo.genres.map((genre,index) => {
+                  return (
+                    <span key={index} className="max-w-max rounded-md text-sm font-light bg-indigo-500 px-1 mr-1 inline-block">{genre.name}</span>
+                  )
+                })}
+              </div>
+            </div>
+            <div className="media-info-runtime ml-3 mt-2">
+              <div className="runtime-title font-semibold text-indigo-500">Runtime</div>
+              <div className="runtime-detail max-w-max rounded-md text-sm font-light bg-indigo-500 px-1 mr-1 inline-block">{mediaInfo.runtime} mins</div>
             </div>
           </div>
+
+
         </div>
 
         <div className="media-info-action flex flex-col bg-slate-700 w-8/12 rounded-lg items-center justfy-center font-light p-5">
@@ -94,7 +116,6 @@ const MediaDetail = () => {
           </div>
           <div className="media-info-rate max-h-max flex flex-col items-center">
             <div className="rate-title mt-2">Rating</div>
-            {/* <input type="number" className="rounded-lg border border-indigo-500 text-slate-900 rate-input mt-3" min='0.5' max='10.0' step='0.1'/> */}
             <div className="rate-avg font-bold text-5xl mt-2 text-indigo-500">
               {Math.round(mediaInfo.vote_average * 10) / 10}
             </div>
@@ -104,6 +125,8 @@ const MediaDetail = () => {
         <div className='media-info-trailer px-3 my-5'>
           <iframe width="840" height="472" src={`https://www.youtube-nocookie.com/embed/${trailer}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         </div>
+
+        <Reviews reviews={mediaInfo.reviews}/>
 
       </div>
     </div>
