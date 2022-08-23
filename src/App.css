@@ -103,3 +103,15 @@
   grid-area: 2 / 2 / auto / 5;
   justify-self: center;
 }
+
+.rate-input {
+  height: 100px;
+  width: 100px;
+  font-size: 4rem;
+}
+
+.rate-input::-webkit-outer-spin-button,
+.rate-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
