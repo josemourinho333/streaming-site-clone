@@ -7,17 +7,15 @@ import { fetchPopularMovies } from '../movies/popularMoviesSlice';
 import { fetchTopRatedMovies } from '../movies/topRatedMoviesSlice';
 import { fetchDiscoverMovies } from '../movies/discoverMoviesSlice';
 import { fetchUpcomingMovies } from '../movies/upcomingMoviesSlice';
-import { fetchMovieGenres } from '../genres/movieGenresSlice';
 import { fetchAllGenres } from '../genres/allGenresSlice';
 
-const Home = (props) => {
+const Home = () => {
 
   const trendingMovies = useSelector(state => state.trendingMovies.trendingMovies.results);
   const popularMovies = useSelector(state => state.popularMovies.popularMovies.results);
   const topRatedMovies = useSelector(state => state.topRatedMovies.topRatedMovies.results);
   const discoverMovies = useSelector(state => state.discoverMovies.discoverMovies.results);
   const upcomingMovies = useSelector(state => state.upcomingMovies.upcomingMovies.results);
-  const movieGenres = useSelector(state => state.movieGenres.movieGenres);
   const allGenres = useSelector(state => state.allGenres.allGenres);
 
   const dispatch = useDispatch();
@@ -28,7 +26,6 @@ const Home = (props) => {
     dispatch(fetchTopRatedMovies());
     dispatch(fetchDiscoverMovies());
     dispatch(fetchUpcomingMovies());
-    dispatch(fetchMovieGenres());
     dispatch(fetchAllGenres());
   }, [])
 
