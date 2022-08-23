@@ -87,15 +87,17 @@ const MediaDetail = () => {
           </div>
         </div>
 
-        <div className="media-info-action flex flex-col bg-slate-500 w-8/12 rounded-lg items-center justfy-center font-light p-5">
+        <div className="media-info-action flex flex-col bg-slate-700 w-8/12 rounded-lg items-center justfy-center font-light p-5">
           <div className="media-info-save flex items-center justify-evenly pb-4 border-b border-b-slate-200 w-full">
-            <div className="media-info-like"><HeartIcon className='w-7 h-7'/></div>
-            <div className="media-info-watchList"><PlusIcon className='w-7 h-7'/></div>
+            <div className="media-info-like"><HeartIcon className='w-7 h-7 hover:text-indigo-500'/></div>
+            <div className="media-info-watchList"><PlusIcon className='w-7 h-7 hover:text-indigo-500'/></div>
           </div>
           <div className="media-info-rate max-h-max flex flex-col items-center">
             <div className="rate-title mt-2">Rating</div>
             {/* <input type="number" className="rounded-lg border border-indigo-500 text-slate-900 rate-input mt-3" min='0.5' max='10.0' step='0.1'/> */}
-            <div className="rate-avg font-bold text-5xl mt-2 text-indigo-900">{mediaInfo.vote_average}</div>
+            <div className="rate-avg font-bold text-5xl mt-2 text-indigo-500">
+              {Math.round(mediaInfo.vote_average * 10) / 10}
+            </div>
           </div>
         </div>
 

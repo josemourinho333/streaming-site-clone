@@ -1,9 +1,9 @@
 const getOfficialTrailer = (videosList) => {
   console.log('hello',videosList);
   if (videosList) {
-    const trailerKey = videosList.filter((video) => video.name === 'Official Trailer');
+    const trailerKey = videosList.filter((video) => video.name.toLowerCase().includes('official trailer'));
 
-    return trailerKey[0].key;
+    return trailerKey[0]?.key;
   }
 };
 

@@ -97,6 +97,7 @@
 .media-info-action {
   grid-area: 1 / 5 / 2 / 6 ;
   justify-self: center;
+  height: max-content;
 }
 
 .media-info-trailer {
