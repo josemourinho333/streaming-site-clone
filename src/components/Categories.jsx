@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ListContainer from './ListContainer';
 import { fetchMoviesByCat } from '../movies/moviesByCatSlice';

@@ -13,18 +13,8 @@ function App() {
     <div className="App">
       <NavContainer />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path='/categories' element={
-          <Categories 
-            // movieGenres={state.movieGenres}
-            // allGenres={state.allGenres}
-            // tvGenres={state.tvGenres}
-            // favMovie={favMovie}
-            // watchListMovie={watchListMovie}
-            // favourite={favourite}
-            // watchList={watchList}
-          />
-        } />
+        <Route path="/" element={<Home />}/>
+        <Route path='/categories' element={<Categories />}/>
         {/* <Route path='/mylist' element={
           <MyList 
             favMovie={favMovie}
