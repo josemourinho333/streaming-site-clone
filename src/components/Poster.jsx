@@ -27,7 +27,7 @@ const Poster = (props) => {
 
           </p>
           <h3 className="media-name text-lg font-bold tracking-wide">
-            <a href="#">
+            <a href={`/${props.title ? 'movie' : 'tv'}/${props.id}/${props.title ? props.title : props.name}`}>
               {props.title ? props.title : props.name}
             </a>
           </h3>
