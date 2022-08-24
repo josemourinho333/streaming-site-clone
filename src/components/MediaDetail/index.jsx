@@ -60,7 +60,7 @@ const MediaDetail = () => {
     <div className="media-info-detail-container flex flex-col w-9/12 m-auto">
       <div className="media-info-backdrop" style={{backgroundImage: `linear-gradient(90deg, rgba(255,255,255,0) 70%, rgba(17,17,17,1) 98%), linear-gradient(-90deg, rgba(255,255,255,0) 70%, rgba(17,17,17,1) 98%), linear-gradient(180deg, rgba(255,255,255,0) 70%, rgba(17,17,17,1) 98%), radial-gradient(circle, rgba(255,255,255,0) 70%, rgba(17,17,17,1) 97%), url(https://image.tmdb.org/t/p/original${mediaInfo.backdrop_path})`}}>
         <div className="media-info-header flex">
-          <div className="media-info-title text-5xl font-bold mx-2">{mediaInfo.title ? mediaInfo.title : mediaInfo.name}</div>
+          <div className="media-info-title text-4xl font-bold mx-2">{mediaInfo.title ? mediaInfo.title : mediaInfo.name}</div>
           <div className="media-info-release text-lg mr-2 text-indigo-500 font-light">({mediaInfo.release_date.substring(0, 4)})</div>
           <div className="media-info-director text-lg mx-2 font-light">Directed by <span className='font-semibold'>{director}</span></div>
         </div>
