@@ -10,6 +10,8 @@ import moviesByCatReducer from '../movies/moviesByCatSlice';
 import movieGenresReducer from '../genres/movieGenresSlice';
 import allGenresReducer from '../genres/allGenresSlice';
 
+import reqTokenReducer from '../auth/reqTokenSlice';
+
 export default configureStore({
   reducer: {
     hero: heroReducer,
@@ -24,5 +26,7 @@ export default configureStore({
     allGenres: allGenresReducer,
 
     moviesByCat: moviesByCatReducer,
+
+    reqToken: reqTokenReducer,
   }
 })

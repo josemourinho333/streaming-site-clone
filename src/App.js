@@ -4,11 +4,13 @@ import NavContainer from './components/NavContainer';
 import Home from './components/Home';
 import Categories from './components/Categories';
 import MediaDetail from './components/MediaDetail';
+import Login from './components/Login';
 
 function App() {
 
   return (
     <div className="App">
+      <Login />
       <NavContainer />
       <Routes>
         <Route path="/" element={<Home />}/>
