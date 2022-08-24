@@ -12,6 +12,8 @@ import allGenresReducer from '../genres/allGenresSlice';
 
 import reqTokenReducer from '../auth/reqTokenSlice';
 
+import userLoggedInReducer from '../auth/userLoggedIn';
+
 export default configureStore({
   reducer: {
     hero: heroReducer,
@@ -28,5 +30,6 @@ export default configureStore({
     moviesByCat: moviesByCatReducer,
 
     reqToken: reqTokenReducer,
+    userLoggedIn: userLoggedInReducer,
   }
 })

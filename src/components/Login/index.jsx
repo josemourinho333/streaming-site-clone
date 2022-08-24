@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { XIcon } from '@heroicons/react/solid';
 import { fetchReqToken } from "../../auth/reqTokenSlice";
+import { setUserLoggedIn } from "../../auth/userLoggedIn";
 import Cookies from 'js-cookie';
-
 
 const Login = () => {
   const open = useSelector(state => state.reqToken.isOpen);
@@ -39,6 +39,12 @@ const Login = () => {
     }))
   };
 
+  const dispatch = useDispatch();
+
+  const closeHandler = () => {
+    dispatch(fetchReqToken({close: true}));
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
     console.log('submitting');
@@ -60,6 +66,10 @@ const Login = () => {
             })
             .then((response) => {
               console.log('response account deets', response);
+              dispatch(setUserLoggedIn(response.data));
+            })
+            .then(() => {
+              closeHandler();
             })
           })
         } else {
@@ -69,11 +79,6 @@ const Login = () => {
       .catch((error) => console.log('error', error));
   };
 
-  const dispatch = useDispatch();
-
-  const closeHandler = () => {
-    dispatch(fetchReqToken({close: true}));
-  };
 
   if (open) {
     return (
