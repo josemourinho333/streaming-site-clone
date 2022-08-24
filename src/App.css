@@ -39,7 +39,7 @@
 
 .hero-button-wrapper {
   grid-area: 4 / 1 / 5 / 2;
-  align-self: center;
+  align-self: flex-start;
 }
 
 /* Poster.jsx styling */
