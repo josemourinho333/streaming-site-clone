@@ -20,7 +20,7 @@ const NavContainer = (props) => {
   return (
     <div className={`fixed top-0 left-0 right-0 nav-container flex justify-between px-10 py-3 ${scrollPosition < 100 ? 'bg-transparent' : 'bg-indigo-500'}`}>
       <NavMenu />
-      <NavActions getAuthToken={props.getAuthToken} />
+      <NavActions signInOpenHandler={props.signInOpenHandler} signOutHandler={props.signOutHandler} user={props.user}/>
     </div>
   )
 }

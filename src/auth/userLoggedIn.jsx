@@ -13,14 +13,16 @@ const userLoggedInSlice = createSlice({
     setUserLoggedIn(state, action) {
       state.loading = false;
       state.userLoggedIn = {...action.payload};
+      localStorage.setItem('user_info', JSON.stringify(action.payload));
       state.error = '';
     },
 
     setUserLoggedOut(state, action) {
       state.loading = false;
       state.userLoggedIn = {};
+      localStorage.removeItem('user_info');
       state.error = '';
-    }
+    },
   }
 });
 
