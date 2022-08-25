@@ -4,7 +4,6 @@ import ListContainer from './ListContainer';
 import { fetchMoviesByCat } from '../movies/moviesByCatSlice';
 import { fetchAllGenres } from '../genres/allGenresSlice';
 
-
 const Categories = () => {
   const categorizedMovies = useSelector(state => state.moviesByCat.moviesByCat);
   const allGenres = useSelector(state => state.allGenres.allGenres);

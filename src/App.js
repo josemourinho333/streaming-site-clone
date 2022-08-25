@@ -5,6 +5,7 @@ import Home from './components/Home';
 import Categories from './components/Categories';
 import MediaDetail from './components/MediaDetail';
 import Login from './components/Login';
+import Favourites from './components/Favourites';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect,useState } from "react";
@@ -46,6 +47,7 @@ function App() {
         <Route path='/categories' element={<Categories />}/>
         <Route path='/:type/:id/:name' element={<MediaDetail />}/>
 
+        <Route path='/favourites' element={<Favourites />} />
 
         {/* <Route path='/mylist' element={
           <MyList 
@@ -56,15 +58,7 @@ function App() {
             allGenres={state.allGenres}
           />
         } />
-        <Route path='/favourites' element={
-          <Favourites 
-            favMovie={favMovie}
-            watchListMovie={watchListMovie}
-            favourite={favourite}
-            watchList={watchList}
-            allGenres={state.allGenres}
-          />
-        } />
+
         <Route path='/search' element={
           <Search 
             query={query}

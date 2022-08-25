@@ -138,3 +138,15 @@
 .login-box {
   grid-area: 1 / 5 / auto / 6;
 }
+
+.favourite-list {
+  display: grid;
+  grid-template-columns: repeat(5, 300px);
+  grid-gap: 20px;
+  justify-content: center;
+}
+
+.media-card {
+  background-repeat: no-repeat;
+}
+

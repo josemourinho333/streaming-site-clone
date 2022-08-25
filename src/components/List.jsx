@@ -17,7 +17,15 @@ const List = (props) => {
         allGenres={props.allGenres}
       />
     )
-  })
+  });
+
+  if (props.favourites) {
+    return (
+      <div className="list favourite-list pt-3 w-full">
+        {posters}
+      </div>
+    );
+  };
 
   return (
     <div className="list flex overflow-x-auto pt-3">

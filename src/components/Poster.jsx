@@ -20,7 +20,7 @@ const Poster = (props) => {
   });
 
   return (
-    <div id={props.id}className="media-card min-w-[300px] min-h-[440px] bg-center flex items-end group" style={{backgroundImage: `url(http://image.tmdb.org/t/p/w300${props.src})`}}>
+    <div id={props.id} className="media-card min-w-[300px] min-h-[440px] bg-center flex items-end group" style={{backgroundImage: `url(http://image.tmdb.org/t/p/w300${props.src})`}}>
       <div className="media-page flex items-end h-1/2 px-5 py-5 w-full bg-gradient-to-t from-black via-black invisible group-hover:visible">
         <div className="media-info">
           <p className="media-header">
