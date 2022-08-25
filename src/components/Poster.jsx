@@ -1,5 +1,6 @@
 import getGenresInMovie from '../helpers/getGenresInMovie';
 import { HeartIcon, PlusIcon, DotsHorizontalIcon } from '@heroicons/react/solid';
+import addToFavHandler from '../helpers/addToFav';
 
 const Poster = (props) => {
   // if release date data, split and only take the year value
@@ -32,7 +33,7 @@ const Poster = (props) => {
             </a>
           </h3>
           <p className="media-body flex mt-2 mb-2">
-            <HeartIcon className={`h-6 w-6 mr-1 fill-white-500 hover:fill-red-500`}/>
+            <HeartIcon onClick={() => addToFavHandler(props)} className={`h-6 w-6 mr-1 fill-white-500 hover:fill-red-500`}/>
             {/* <span>Avg score: {props.score}</span> */}
             {/* <PlusIcon className={`h-6 w-6 mr-1 fill-white-500 hover:fill-green-500`}/> */}
             {/* <DotsHorizontalIcon className='h-6 w-6 mr-1 fill-white-500 hover:fill-gray-500'/> */}
