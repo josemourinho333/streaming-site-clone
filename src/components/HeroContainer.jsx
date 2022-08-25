@@ -11,7 +11,7 @@ const HeroContainer = () => {
   }, [])
 
   return (
-    <div className="hero-container p-8" style={{backgroundImage: `url(http://image.tmdb.org/t/p/original${hero.backdrop_path})`}}>
+    <div className="hero-container p-8" style={{backgroundImage: `linear-gradient(180deg, rgba(255,255,255,0) 50%, rgba(17,17,17,1) 100%), url(http://image.tmdb.org/t/p/original${hero.backdrop_path})`}}>
       <h1 className='hero-title text-4xl font-bold mb-4'>{hero.title}</h1>
       <p className="hero-desc font-medium text-md mb-4">{hero.overview}</p>
       <div className="flex hero-button-wrapper">

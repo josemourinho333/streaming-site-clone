@@ -34,7 +34,6 @@ const MediaDetail = () => {
           .then(() => {
             tmdb.get(`${type}/${id}/reviews`)
             .then((response) => {
-              console.log('random page', response);
               setMediaInfo(prev => ({
                 ...prev,
                 reviews: [...response.data.results],
