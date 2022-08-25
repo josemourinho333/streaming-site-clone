@@ -47,7 +47,11 @@ function App() {
         <Route path='/categories' element={<Categories />}/>
         <Route path='/:type/:id/:name' element={<MediaDetail />}/>
 
-        <Route path='/favourites' element={<Favourites />} />
+        <Route path='/favourites' element={
+          user
+          ? <Favourites />
+          : <div>Must log in to see favourites</div>
+        } />
 
         {/* <Route path='/mylist' element={
           <MyList 
