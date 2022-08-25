@@ -1,18 +1,19 @@
 import tmdb from '../api/tmdb';
 import Cookies from 'js-cookie';
 
-const addToFavHandler = (mediaData) => {
+const addToWatchList = (mediaData) => {
+  console.log('mediaDat', mediaData);
   const account = JSON.parse(localStorage.getItem('user_info'));
   if (!account) {
-    console.log('must be logged in to fav');
+    console.log('must be logged in to add to watchList');
   } else {
     const sessionId = Cookies.get('session_id');
     const reqBody = {
       media_type: mediaData.title ? 'movie' : 'tv',
       media_id: mediaData.id,
-      favorite: true,
+      watchlist: true,
     }
-    tmdb.post(`account/${account.id}/favorite`, reqBody, {
+    tmdb.post(`account/${account.id}/watchlist`, reqBody, {
       params: {
         session_id: sessionId,
       }
@@ -24,4 +25,4 @@ const addToFavHandler = (mediaData) => {
   }
 };
 
-export default addToFavHandler;
+export default addToWatchList;

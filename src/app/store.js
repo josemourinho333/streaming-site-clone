@@ -7,6 +7,7 @@ import discoverMoviesReducer from '../movies/discoverMoviesSlice';
 import heroReducer from '../movies/heroSlice';
 import moviesByCatReducer from '../movies/moviesByCatSlice';
 import favoriteMoviesReducer from '../movies/favoriteMoviesSlice';
+import watchListMoviesReducer from '../movies/watchListMoviesSlice';
 
 import movieGenresReducer from '../genres/movieGenresSlice';
 import allGenresReducer from '../genres/allGenresSlice';
@@ -34,5 +35,6 @@ export default configureStore({
     userLoggedIn: userLoggedInReducer,
 
     favMovies: favoriteMoviesReducer,
+    watchListMovies: watchListMoviesReducer,
   }
 })

@@ -1,36 +1,28 @@
 import ListContainer from "./ListContainer";
-import { useEffect, useState } from 'react';
-import axios from "axios";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { fetchWatchListMovies } from '../movies/watchListMoviesSlice';
+import { fetchAllGenres } from '../genres/allGenresSlice';
 
-const MyList = (props) => {
-  const [myList, setMyList] = useState([]);
+const MyList = () => {
+  const watchListMovies = useSelector(state => state.watchListMovies.watchListMovies.results);
+  const allGenres = useSelector(state => state.allGenres.allGenres);
 
-  const movieIds = props.watchList.map(item => item.id);
-  const setOfIds = new Set(movieIds);
-  const uniqueIds = [...setOfIds];
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    uniqueIds.map((item) => {
-      const apiURL = `https://api.themoviedb.org/3/movie/${item}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`;
-      axios.get(apiURL)
-        .then((results) => {
-          setMyList(prev => ([...prev, results.data]))
-        })
-        .catch((err) => console.log('error:', err))
-    })
+    dispatch(fetchWatchListMovies());
+    dispatch(fetchAllGenres());
+
   }, []);
 
   return (
     <>
       <ListContainer 
-        title="My List"
-        media={myList}
-        customList={true}
-        allGenres={props.allGenres}
-        favMovie={props.favMovie}
-        watchListMovie={props.watchListMovie}
-        favourite={props.favourite}
-        watchList={props.watchList}
+        title="My Watch List"
+        media={watchListMovies}
+        allGenres={allGenres}
+        favourites={true}
       />
     </>
   )
