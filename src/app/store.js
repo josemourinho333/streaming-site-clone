@@ -8,6 +8,7 @@ import heroReducer from '../movies/heroSlice';
 import moviesByCatReducer from '../movies/moviesByCatSlice';
 import favoriteMoviesReducer from '../movies/favoriteMoviesSlice';
 import watchListMoviesReducer from '../movies/watchListMoviesSlice';
+import customListMoviesReducer from '../movies/customListMoviesSlices';
 
 import movieGenresReducer from '../genres/movieGenresSlice';
 import allGenresReducer from '../genres/allGenresSlice';
@@ -36,5 +37,6 @@ export default configureStore({
 
     favMovies: favoriteMoviesReducer,
     watchListMovies: watchListMoviesReducer,
+    customListMovies: customListMoviesReducer,
   }
 })
