@@ -19,7 +19,7 @@
 
 /* HeroContainer.jsx styling */
 .hero-container {
-  height: 90vh;
+  height: 80vh;
   background-size: cover !important;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -148,5 +148,11 @@
 
 .media-card {
   background-repeat: no-repeat;
+}
+
+.regular-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px);
+  grid-auto-flow: column;
 }
 

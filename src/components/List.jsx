@@ -28,7 +28,7 @@ const List = (props) => {
   };
 
   return (
-    <div className="list flex overflow-x-auto pt-3">
+    <div className="list regular-list overflow-x-auto pt-3">
       {posters}
     </div>
   );

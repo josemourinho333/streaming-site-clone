@@ -6,6 +6,7 @@ import Categories from './components/Categories';
 import MediaDetail from './components/MediaDetail';
 import Login from './components/Login';
 import Favourites from './components/Favourites';
+import MyList from './components/MyList';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect,useState } from "react";
@@ -53,17 +54,13 @@ function App() {
           : <div>Must log in to see favourites</div>
         } />
 
-        {/* <Route path='/mylist' element={
-          <MyList 
-            favMovie={favMovie}
-            watchListMovie={watchListMovie}
-            favourite={favourite}
-            watchList={watchList}
-            allGenres={state.allGenres}
-          />
+        <Route path='/mylist' element={
+          user
+          ? <MyList />
+          : <div>Must log in to see your watch list</div>
         } />
 
-        <Route path='/search' element={
+        {/* <Route path='/search' element={
           <Search 
             query={query}
             setQuery={setQuery}
