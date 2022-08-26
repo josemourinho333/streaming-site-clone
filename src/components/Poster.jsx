@@ -28,34 +28,41 @@ const Poster = (props) => {
   const sessionId = Cookies.get('session_id');
 
   useEffect(() => {
-    const mediaType = props.title ? 'movie' : 'tv';
-    tmdb.get(`${mediaType}/${props.id}/account_states`, {
-      params: {
-        session_id: sessionId,
-      }
-    })
-    .then((response) => {
-      console.log('response', response.data);
-      setMediaState({...response.data});
-    });
+    if (sessionId) {
+      const mediaType = props.title ? 'movie' : 'tv';
+      tmdb.get(`${mediaType}/${props.id}/account_states`, {
+        params: {
+          session_id: sessionId,
+        }
+      })
+      .then((response) => {
+        setMediaState({...response.data});
+      });
+    } 
   }, []);
 
   const favClickHandler = () => {
-    console.log('fav clicked');
-    setMediaState(prev => ({
-      ...prev,
-      favorite: true,
-    }));
-    addToFavHandler(props);
+    if (sessionId) {
+      setMediaState(prev => ({
+        ...prev,
+        favorite: true,
+      }));
+      addToFavHandler(props);
+    } else {
+      console.log('must be logged in');
+    }
   };
 
   const watchListClickHandler = () => {
-    console.log('watchlist clicked');
-    setMediaState(prev => ({
-      ...prev,
-      watchlist: true,
-    }));
-    addToWatchList(props)
+    if (sessionId) {
+      setMediaState(prev => ({
+        ...prev,
+        watchlist: true,
+      }));
+      addToWatchList(props);
+    } else {
+      console.log('must be logged in');
+    }
   };
 
   const favorited = mediaState?.favorite ? 'fill-red-500' : 'fill-white-500';
