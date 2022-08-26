@@ -2,8 +2,13 @@ import getGenresInMovie from '../helpers/getGenresInMovie';
 import { HeartIcon, PlusIcon, DotsHorizontalIcon } from '@heroicons/react/solid';
 import addToFavHandler from '../helpers/addToFav';
 import addToWatchList from '../helpers/addToWatchList';
+import { useEffect, useState } from 'react';
+import tmdb from '../api/tmdb';
+import Cookies from 'js-cookie';
 
 const Poster = (props) => {
+  const [mediaState, setMediaState] = useState(null);
+
   // if release date data, split and only take the year value
   const releaseYear = props.releaseDate ? props.releaseDate?.split('-')[0] : props.airDate?.split('-')[0];
   
@@ -20,6 +25,24 @@ const Poster = (props) => {
     }
   });
 
+  const sessionId = Cookies.get('session_id');
+
+  useEffect(() => {
+    const mediaType = props.title ? 'movie' : 'tv';
+    tmdb.get(`${mediaType}/${props.id}/account_states`, {
+      params: {
+        session_id: sessionId,
+      }
+    })
+    .then((response) => {
+      console.log('response', response.data);
+      setMediaState({...response.data});
+    });
+  }, []);
+
+  const favorited = mediaState?.favorite ? 'fill-red-500' : 'fill-white-500';
+  const watchListed = mediaState?.watchlist ? 'fill-green-500' : 'fill-white-500';
+
   return (
     <div id={props.id} className="media-card min-w-[300px] min-h-[440px] bg-center flex items-end group" style={{backgroundImage: `url(http://image.tmdb.org/t/p/w300${props.src})`}}>
       <div className="media-page flex items-end h-1/2 px-5 py-5 w-full bg-gradient-to-t from-black via-black invisible group-hover:visible">
@@ -34,10 +57,10 @@ const Poster = (props) => {
             </a>
           </h3>
           <p className="media-body flex mt-2 mb-2">
-            <HeartIcon onClick={() => addToFavHandler(props)} className={`h-6 w-6 mr-1 fill-white-500 hover:fill-red-500`}/>
-            <PlusIcon onClick={() => addToWatchList(props)} className={`h-6 w-6 mr-1 fill-white-500 hover:fill-green-500`}/>
+            <HeartIcon onClick={() => addToFavHandler(props)} className={`h-6 w-6 mr-1 ${favorited} hover:fill-red-500`}/>
+            <PlusIcon onClick={() => addToWatchList(props)} className={`h-6 w-6 mr-1 ${watchListed} hover:fill-green-500`}/>
+            <DotsHorizontalIcon className='h-6 w-6 mr-1 fill-white-500 hover:fill-gray-500'/>
             {/* <span>Avg score: {props.score}</span> */}
-            {/* <DotsHorizontalIcon className='h-6 w-6 mr-1 fill-white-500 hover:fill-gray-500'/> */}
           </p>
           <p className="media-genres">
             {mappedGenres}
