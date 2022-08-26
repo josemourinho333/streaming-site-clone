@@ -1,31 +1,32 @@
-import axios from "axios";
+import { TerminalIcon } from "@heroicons/react/solid";
 import { useState, useEffect } from "react";
-import ListContainer from "./ListContainer";
+import useDebounce from '../hooks/useDebounce';
 
 const Search = (props) => {
-  const [searchResult, setSearchResult] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const finalTerm = useDebounce(searchTerm, 400);
+
+  const [searchWithTerm, setSearchWithTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    console.log('use effect ran in search comp');
-    // make axios call with the query value
-    setTimeout(() => {
-      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=avengers&page=1&include_adult=false`)
-      .then((results) => {
-        console.log('results from axios', results)
-      })
-    }, "2000")
-    // setSearchResult the axios call results.data
+    setSearchWithTerm(finalTerm);
+  }, [finalTerm]);
 
-    // 
-  }, [props.query]);
+  useEffect(() => {
+
+  }, [])
+
+
 
   return (
     <>
       <div className="search-container mt-20 flex flex-col items-center">
-        <h1 className="text-5xl">Search any movies</h1>
-        <input type="search" placeholder='Search...' className="search font-lg text-black px-2 rounded-lg w-1/2 mt-5" onChange={(e) => props.setQuery(e.target.value)}/>
+        {/* <h1 className="text-5xl">Search any movies</h1> */}
+        <input type="search" placeholder='Search for any movies...' className="search font-lg text-black px-2 rounded-lg w-1/2 mt-5" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
         <h1>{props.query}</h1>
       </div>
+      <div>search term: {searchTerm}</div>
       {/* <ListContainer 
         title="Search results"
         customList={true}
