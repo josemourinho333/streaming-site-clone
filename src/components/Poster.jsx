@@ -40,6 +40,24 @@ const Poster = (props) => {
     });
   }, []);
 
+  const favClickHandler = () => {
+    console.log('fav clicked');
+    setMediaState(prev => ({
+      ...prev,
+      favorite: true,
+    }));
+    addToFavHandler(props);
+  };
+
+  const watchListClickHandler = () => {
+    console.log('watchlist clicked');
+    setMediaState(prev => ({
+      ...prev,
+      watchlist: true,
+    }));
+    addToWatchList(props)
+  };
+
   const favorited = mediaState?.favorite ? 'fill-red-500' : 'fill-white-500';
   const watchListed = mediaState?.watchlist ? 'fill-green-500' : 'fill-white-500';
 
@@ -57,8 +75,8 @@ const Poster = (props) => {
             </a>
           </h3>
           <p className="media-body flex mt-2 mb-2">
-            <HeartIcon onClick={() => addToFavHandler(props)} className={`h-6 w-6 mr-1 ${favorited} hover:fill-red-500`}/>
-            <PlusIcon onClick={() => addToWatchList(props)} className={`h-6 w-6 mr-1 ${watchListed} hover:fill-green-500`}/>
+            <HeartIcon onClick={favClickHandler} className={`h-6 w-6 mr-1 ${favorited} hover:fill-red-500`}/>
+            <PlusIcon onClick={watchListClickHandler} className={`h-6 w-6 mr-1 ${watchListed} hover:fill-green-500`}/>
             <DotsHorizontalIcon className='h-6 w-6 mr-1 fill-white-500 hover:fill-gray-500'/>
             {/* <span>Avg score: {props.score}</span> */}
           </p>
