@@ -21,7 +21,7 @@ const Reviews = (props) => {
       <div className="reviews-title font-semibold text-indigo-500">Reviews</div>
       <div className="reviews-list">
         {reviewItems.length > 1
-          ? {reviewItems}
+          ? reviewItems
           : 'No reviews yet'}
       </div>
     </div>
