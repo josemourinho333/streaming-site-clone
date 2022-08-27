@@ -22,7 +22,9 @@ const CustomListBox = (props) => {
     <div className='absolute bg-[#111111] py-2 px-2 border border-indigo-500 bottom-5 left-5 z-50 rounded-lg text-sm font-light flex flex-col w-[170px] h-[170px] justify-between'>
       <div className='sticky title border-b pb-2 text-center mb-1'>Add to custom list</div>
       <div className='overflow-y-auto'>
-        {listNames}
+        {props.title
+          ? listNames
+          : 'Add TV feature coming soon...'}
       </div>
       <div className='sticky footer border-t pt-1 text-center mt-1 cursor-pointer'>Create New +</div>
     </div>
