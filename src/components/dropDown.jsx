@@ -3,7 +3,7 @@ import React from 'react';
 const DropDown = (props) => {
 
   return (
-    <div className="drop-down flex flex-col absolute bg-indigo-500 w-full p-2 rounded-lg top-6">
+    <div className="drop-down flex flex-col absolute bg-indigo-500 w-[80px] p-2 rounded-lg top-6">
       <div>
         <a href={ props.cat
           ? `/categories/movies`
