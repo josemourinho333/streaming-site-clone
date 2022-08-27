@@ -3,18 +3,26 @@ import DropDown from './dropDown';
 import { useState } from 'react';
 
 const NavMenu = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState({
+    categories: false,
+    favourites: false,
+    myList: false
+  });
 
   return (
     <div className="nav-menu flex justify-start items-center">
       <div className="logo text-3xl font-bold ">LOGO</div>
       <div className="home text-sm font-light ml-3"><Link to='/'>Home</Link> </div>
-      <div onClick={() => setOpen(!open)} className="categories text-sm font-light ml-3 cursor-pointer relative">
+      <div onClick={() => setOpen(prev => ({...prev, categories: !open.categories}))} className="categories text-sm font-light ml-3 cursor-pointer relative">
         Categories
-        {open && <DropDown />}
+        {open.categories && <DropDown cat={true} />}
       </div>
       <div className="my-list text-sm font-light ml-3"><Link to='/mylist'>My List</Link></div>
-      <div className="fav text-sm font-light ml-3"><Link to='/favourites'>Favourites</Link></div>
+      {/* <div className="fav text-sm font-light ml-3"><Link to='/favourites'>Favourites</Link></div> */}
+      <div onClick={() => setOpen(prev => ({...prev, favourites: !open.favourites}))} className="fav text-sm font-light ml-3 cursor-pointer relative">
+        Favourites
+        {open.favourites && <DropDown fav={true} />}
+      </div>
       <div className="search text-sm font-light ml-3"><Link to='/search'>Search</Link></div>
     </div>
   )

@@ -15,6 +15,7 @@ import popularTvReducer from '../tv/popularTvSlice';
 import topRatedTvReducer from '../tv/topRatedTvSlice';
 import discoverTvReducer from '../tv/discoverTvSlice';
 import tvByCatReducer from '../tv/tvByCatSlice';
+import favoriteTvReducer from '../tv/favoriteTvSlice';
 
 import movieGenresReducer from '../genres/movieGenresSlice';
 import allGenresReducer from '../genres/allGenresSlice';
@@ -38,6 +39,7 @@ export default configureStore({
     topRatedTv: topRatedTvReducer,
     discoverTv: discoverTvReducer,
     tvByCat: tvByCatReducer,
+    favTv: favoriteTvReducer,
 
     movieGenres: movieGenresReducer,
     allGenres: allGenresReducer,

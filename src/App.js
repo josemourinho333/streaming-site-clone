@@ -50,7 +50,7 @@ function App() {
 
         <Route path='/:type/:id/:name' element={<MediaDetail />}/>
 
-        <Route path='/favourites' element={
+        <Route path='/favourites/:type' element={
           user
           ? <Favourites />
           : <div>Must log in to see favourites</div>
