@@ -1,10 +1,11 @@
-import { TerminalIcon } from "@heroicons/react/solid";
 import { useState, useEffect } from "react";
+import tmdb from "../api/tmdb";
 import useDebounce from '../hooks/useDebounce';
+import ListContainer from "./ListContainer";
 
 const Search = (props) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const finalTerm = useDebounce(searchTerm, 400);
+  const finalTerm = useDebounce(searchTerm, 500);
 
   const [searchWithTerm, setSearchWithTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -14,10 +15,17 @@ const Search = (props) => {
   }, [finalTerm]);
 
   useEffect(() => {
-
-  }, [])
-
-
+    if (searchWithTerm) {
+      tmdb.get(`search/movie`, {
+        params: {
+          query: searchWithTerm
+        }
+      })
+      .then((response) => {
+        setSearchResults([...response.data.results])
+      })
+    }
+  }, [searchWithTerm]);
 
   return (
     <>
@@ -26,17 +34,12 @@ const Search = (props) => {
         <input type="search" placeholder='Search for any movies...' className="search font-lg text-black px-2 rounded-lg w-1/2 mt-5" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
         <h1>{props.query}</h1>
       </div>
-      <div>search term: {searchTerm}</div>
-      {/* <ListContainer 
-        title="Search results"
-        customList={true}
-        media={myList}
+      <ListContainer 
+        title={`Search results for: "${searchWithTerm}"`}
+        media={searchResults}
         allGenres={props.allGenres}
-        favMovie={props.favMovie}
-        watchListMovie={props.watchListMovie}
-        favourite={props.favourite}
-        watchList={props.watchList}
-      /> */}
+        search={true}
+      />
     </>
 
   )

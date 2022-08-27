@@ -19,7 +19,7 @@ const List = (props) => {
     )
   });
 
-  if (props.favourites) {
+  if (props.favourites || props.search) {
     return (
       <div className="list favourite-list pt-3 w-full">
         {posters}

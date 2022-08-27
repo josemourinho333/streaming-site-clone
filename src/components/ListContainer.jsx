@@ -3,6 +3,7 @@ import List from './List';
 const ListContainer = (props) => {
 
   const favourites = props.favourites ? true : false;
+  const search = props.search ? true : false;
 
   if (favourites) {
     return (
@@ -13,6 +14,19 @@ const ListContainer = (props) => {
           </div>
         </div>
         <List media={props.media} allGenres={props.allGenres} favourites={favourites}/>
+      </div>
+    )
+  }
+
+  if (search) {
+    return (
+      <div className="list-container my-5 px-8">
+        <div className='flex mt-3 items-center justify-center'>
+          <div className="list-title text-2xl font-bold">
+            {props.title}
+          </div>
+        </div>
+        <List media={props.media} allGenres={props.allGenres} search={search}/>
       </div>
     )
   }
