@@ -85,7 +85,6 @@ const Poster = (props) => {
             <HeartIcon onClick={favClickHandler} className={`h-6 w-6 mr-1 ${favorited} hover:fill-red-500`}/>
             <PlusIcon onClick={watchListClickHandler} className={`h-6 w-6 mr-1 ${watchListed} hover:fill-green-500`}/>
             <DotsHorizontalIcon className='h-6 w-6 mr-1 fill-white-500 hover:fill-gray-500'/>
-            {/* <span>Avg score: {props.score}</span> */}
           </p>
           <p className="media-genres">
             {mappedGenres}

@@ -46,7 +46,8 @@ function App() {
       <NavContainer signInOpenHandler={signInOpenHandler} signOutHandler={signOutHandler} user={user}/>
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path='/categories' element={<Categories />}/>
+        <Route path='/categories/:type' element={<Categories />}/>
+
         <Route path='/:type/:id/:name' element={<MediaDetail />}/>
 
         <Route path='/favourites' element={
