@@ -8,6 +8,11 @@ import { fetchTopRatedMovies } from '../movies/topRatedMoviesSlice';
 import { fetchDiscoverMovies } from '../movies/discoverMoviesSlice';
 import { fetchUpcomingMovies } from '../movies/upcomingMoviesSlice';
 import { fetchAllGenres } from '../genres/allGenresSlice';
+import { fetchTrendingTv } from '../tv/trendingTvSlice';
+import { fetchPopularTv } from '../tv/popularTvSlice';
+import { fetchTopRatedTv } from '../tv/topRatedTvSlice';
+import { fetchDiscoverTv } from '../tv/discoverTvSlice';
+
 
 const Home = () => {
 
@@ -16,6 +21,12 @@ const Home = () => {
   const topRatedMovies = useSelector(state => state.topRatedMovies.topRatedMovies.results);
   const discoverMovies = useSelector(state => state.discoverMovies.discoverMovies.results);
   const upcomingMovies = useSelector(state => state.upcomingMovies.upcomingMovies.results);
+
+  const trendingTv = useSelector(state => state.trendingTv.trendingTv.results);
+  const popularTv = useSelector(state => state.popularTv.popularTv.results);
+  const topRatedTv = useSelector(state => state.topRatedTv.topRatedTv.results);
+  const discoverTv = useSelector(state => state.discoverTv.discoverTv.results);
+
   const allGenres = useSelector(state => state.allGenres.allGenres);
 
   const dispatch = useDispatch();
@@ -26,6 +37,10 @@ const Home = () => {
     dispatch(fetchTopRatedMovies());
     dispatch(fetchDiscoverMovies());
     dispatch(fetchUpcomingMovies());
+    dispatch(fetchTrendingTv())
+    dispatch(fetchPopularTv());
+    dispatch(fetchTopRatedTv());
+    dispatch(fetchDiscoverTv());
     dispatch(fetchAllGenres());
   }, [])
 
@@ -33,16 +48,14 @@ const Home = () => {
     <>
       <HeroContainer />
       <ListContainer title="Trending Movies" media={trendingMovies} allGenres={allGenres}/>
+      <ListContainer title="Trending Shows" media={trendingTv} allGenres={allGenres} />
       <ListContainer title="Popular Movies" media={popularMovies} allGenres={allGenres}/>
+      <ListContainer title="Popular Shows" media={popularTv} allGenres={allGenres} />
       <ListContainer title="Top Rated Movies" media={topRatedMovies} allGenres={allGenres}/>
+      <ListContainer title="Top Rated Shows" media={topRatedTv} allGenres={allGenres} />
       <ListContainer title="Discover Movies" media={discoverMovies} allGenres={allGenres}/>
+      <ListContainer title="Discover Shows" media={discoverTv} allGenres={allGenres} />
       <ListContainer title="Upcoming Movies" media={upcomingMovies} allGenres={allGenres}/>
-
-      {/* tv shows */}
-      {/* <ListContainer title="Trending Shows" media={props.trendingShows} allGenres={props.allGenres} favMovie={props.favMovie} watchListMovie={props.watchListMovie} favourite={props.favourite} watchList={props.watchList} /> */}
-      {/* <ListContainer title="Popular Shows" media={props.popularShows} allGenres={props.allGenres} favMovie={props.favMovie} watchListMovie={props.watchListMovie} favourite={props.favourite} watchList={props.watchList} /> */}
-      {/* <ListContainer title="Top Rated Shows" media={props.topRatedShows} allGenres={props.allGenres} favMovie={props.favMovie} watchListMovie={props.watchListMovie} favourite={props.favourite} watchList={props.watchList} /> */}
-      {/* <ListContainer title="Discover Shows" media={props.discoverShows} allGenres={props.allGenres} favMovie={props.favMovie} watchListMovie={props.watchListMovie} favourite={props.favourite} watchList={props.watchList} /> */}
     </>
   )
 }

@@ -10,6 +10,14 @@ import favoriteMoviesReducer from '../movies/favoriteMoviesSlice';
 import watchListMoviesReducer from '../movies/watchListMoviesSlice';
 import customListMoviesReducer from '../movies/customListMoviesSlices';
 
+import trendingTvReducer from '../tv/trendingTvSlice';
+import popularTvReducer from '../tv/popularTvSlice';
+import topRatedTvReducer from '../tv/topRatedTvSlice';
+import discoverTvReducer from '../tv/discoverTvSlice';
+import tvByCatReducer from '../tv/tvByCatSlice';
+import favoriteTvReducer from '../tv/favoriteTvSlice';
+import watchListTvReducer from '../tv/watchListTvSlice';
+
 import movieGenresReducer from '../genres/movieGenresSlice';
 import allGenresReducer from '../genres/allGenresSlice';
 
@@ -26,6 +34,14 @@ export default configureStore({
     topRatedMovies: topRatedMoviesReducer,
     upcomingMovies: upcomingMoviesReducer,
     discoverMovies: discoverMoviesReducer,
+
+    trendingTv: trendingTvReducer,
+    popularTv:popularTvReducer,
+    topRatedTv: topRatedTvReducer,
+    discoverTv: discoverTvReducer,
+    tvByCat: tvByCatReducer,
+    favTv: favoriteTvReducer,
+    watchListTv: watchListTvReducer,
 
     movieGenres: movieGenresReducer,
     allGenres: allGenresReducer,

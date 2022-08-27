@@ -20,7 +20,9 @@ const Reviews = (props) => {
     <div className="reviews-container px-3 my-5 flex flex-col">
       <div className="reviews-title font-semibold text-indigo-500">Reviews</div>
       <div className="reviews-list">
-        {reviewItems}
+        {reviewItems.length > 1
+          ? reviewItems
+          : 'No reviews yet'}
       </div>
     </div>
   )

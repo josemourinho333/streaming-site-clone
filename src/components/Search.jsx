@@ -16,7 +16,7 @@ const Search = (props) => {
 
   useEffect(() => {
     if (searchWithTerm) {
-      tmdb.get(`search/movie`, {
+      tmdb.get(`search/multi`, {
         params: {
           query: searchWithTerm
         }

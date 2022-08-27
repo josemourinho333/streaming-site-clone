@@ -4,16 +4,16 @@ import tmdb from '../api/tmdb';
 
 const initialState = {
   loading: false,
-  watchListMovies: [],
+  favTv: [],
   error: '',
 };
 
 const accountId = JSON.parse(localStorage.getItem('user_info'));
 const sessionId = Cookies.get('session_id');
 
-export const fetchWatchListMovies = createAsyncThunk('movies/fetchWatchListMovies', () => {
+export const fetchFavoriteTv = createAsyncThunk('tv/fetchFavoriteTv', () => {
   return tmdb
-    .get(`account/${accountId.id}/watchlist/movies`, {
+    .get(`account/${accountId.id}/favorite/tv`, {
       params: {
         session_id: sessionId,
       }
@@ -22,26 +22,26 @@ export const fetchWatchListMovies = createAsyncThunk('movies/fetchWatchListMovie
     .catch((error) => console.log('error', error));
 });
 
-const watchListMoviesSlice = createSlice({
-  name: 'watchListMovies',
+const favoriteTvSlice = createSlice({
+  name: 'favTv',
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(fetchWatchListMovies.pending, (state) => {
+    builder.addCase(fetchFavoriteTv.pending, (state) => {
       state.loading = true;
     });
 
-    builder.addCase(fetchWatchListMovies.fulfilled, (state, action) => {
+    builder.addCase(fetchFavoriteTv.fulfilled, (state, action) => {
       state.loading = false;
-      state.watchListMovies = action.payload;
+      state.favTv = action.payload;
       state.error = '';
     });
 
-    builder.addCase(fetchWatchListMovies.rejected, (state, action) => {
+    builder.addCase(fetchFavoriteTv.rejected, (state, action) => {
       state.loading = false;
-      state.watchListMovies = [];
+      state.favTv = [];
       state.error = action.error;
     });
   }
 });
 
-export default watchListMoviesSlice.reducer;
+export default favoriteTvSlice.reducer;
