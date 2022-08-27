@@ -12,6 +12,8 @@ import { fetchTrendingTv } from '../tv/trendingTvSlice';
 import { fetchPopularTv } from '../tv/popularTvSlice';
 import { fetchTopRatedTv } from '../tv/topRatedTvSlice';
 import { fetchDiscoverTv } from '../tv/discoverTvSlice';
+import { fetchCustomListMovies } from "../movies/customListMoviesSlices";
+
 
 
 const Home = () => {
@@ -21,6 +23,8 @@ const Home = () => {
   const topRatedMovies = useSelector(state => state.topRatedMovies.topRatedMovies.results);
   const discoverMovies = useSelector(state => state.discoverMovies.discoverMovies.results);
   const upcomingMovies = useSelector(state => state.upcomingMovies.upcomingMovies.results);
+
+  const customListMovies = useSelector(state => state.customListMovies.customListMovies);
 
   const trendingTv = useSelector(state => state.trendingTv.trendingTv.results);
   const popularTv = useSelector(state => state.popularTv.popularTv.results);
@@ -42,6 +46,9 @@ const Home = () => {
     dispatch(fetchTopRatedTv());
     dispatch(fetchDiscoverTv());
     dispatch(fetchAllGenres());
+
+    dispatch(fetchCustomListMovies());
+
   }, [])
 
   return (

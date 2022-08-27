@@ -5,9 +5,11 @@ import addToWatchList from '../helpers/addToWatchList';
 import { useEffect, useState } from 'react';
 import tmdb from '../api/tmdb';
 import Cookies from 'js-cookie';
+import CustomListBox from './CustomListBox';
 
 const Poster = (props) => {
   const [mediaState, setMediaState] = useState(null);
+  const [listBoxOpen, setListBoxOpen] = useState(false);
 
   // if release date data, split and only take the year value
   const releaseYear = props.releaseDate ? props.releaseDate?.split('-')[0] : props.airDate?.split('-')[0];
@@ -65,6 +67,14 @@ const Poster = (props) => {
     }
   };
 
+  const customListClickHandler = () => {
+    if (sessionId) {
+      setListBoxOpen(!listBoxOpen);
+    } else {
+      console.log('must be logged in');
+    }
+  }
+
   const favorited = mediaState?.favorite ? 'fill-red-500' : 'fill-white-500';
   const watchListed = mediaState?.watchlist ? 'fill-green-500' : 'fill-white-500';
 
@@ -84,7 +94,14 @@ const Poster = (props) => {
           <p className="media-body flex mt-2 mb-2">
             <HeartIcon onClick={favClickHandler} className={`h-6 w-6 mr-1 ${favorited} hover:fill-red-500`}/>
             <PlusIcon onClick={watchListClickHandler} className={`h-6 w-6 mr-1 ${watchListed} hover:fill-green-500`}/>
-            <DotsHorizontalIcon className='h-6 w-6 mr-1 fill-white-500 hover:fill-gray-500'/>
+            <div className='relative'>
+              <DotsHorizontalIcon onClick={customListClickHandler} className='h-6 w-6 mr-1 fill-white-500 hover:fill-gray-500'/>
+              {!listBoxOpen
+                ? <></>
+                : <CustomListBox mediaState={mediaState} media={props}/>
+              }
+            </div>
+
           </p>
           <p className="media-genres">
             {mappedGenres}
